@@ -1,0 +1,4 @@
+databaseConfiguration:
+  driverClass: com.h2.Driver
+  user: sa
+  url: jdbc:h2:mem:db1;DB_CLOSE_DELAY=-1;MVCC=TRUE
