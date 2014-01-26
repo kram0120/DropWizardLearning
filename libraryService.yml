@@ -1,0 +1,4 @@
+databaseConfiguration:
+  driverClass: org.postgresql.Driver
+  user:
+  url: jdbc:postgresql:ec2-54-204-21-178.compute-1.amazonaws.com/d57sllvvc3hvsr
