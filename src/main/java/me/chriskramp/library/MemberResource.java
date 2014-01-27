@@ -1,5 +1,7 @@
 package me.chriskramp.library;
 
+import com.yammer.dropwizard.hibernate.UnitOfWork;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -20,17 +22,20 @@ public class MemberResource {
   }
 
   @GET
+  @UnitOfWork
   public List<Member> getAllMembers() {
     return memberDAO.getAllMembers();
   }
 
   @GET
+  @UnitOfWork
   @Path("{id}")
   public Member getMember(@PathParam("id") Long id) {
     return memberDAO.findById(id);
   }
 
   @POST
+  @UnitOfWork
   @Path("/create")
   @Consumes(MediaType.APPLICATION_JSON)
   public Member createMember(Member member) {
