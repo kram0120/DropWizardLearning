@@ -95,4 +95,30 @@ public class MemberDAOTest {
 
     assertThat(found).isEqualTo(members);
   }
+
+  @Test
+  public void deleteById_deletesTheMemberRecord() throws Exception {
+    new TestUnitOfWork(sessionFactory) {
+      @Override
+      protected void performTransaction(SessionFactory sessionFactory) {
+        MemberDAO dao = new MemberDAO(sessionFactory);
+        dao.save(new Member());
+      }
+    }.execute();
+
+    new TestUnitOfWork(sessionFactory) {
+      @Override
+      protected void performTransaction(SessionFactory sessionFactory) {
+        MemberDAO dao = new MemberDAO(sessionFactory);
+        List<Member> allMembers = dao.getAllMembers();
+        assertThat(allMembers.size()).isEqualTo(1);
+
+        Member member = allMembers.get(0);
+        dao.delete(member.getId());
+
+        List<Member> allMembers1 = dao.getAllMembers();
+        assertThat(allMembers1.size()).isZero();
+      }
+    }.execute();
+  }
 }

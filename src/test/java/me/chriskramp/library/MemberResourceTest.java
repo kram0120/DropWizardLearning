@@ -73,4 +73,10 @@ public class MemberResourceTest extends ResourceTest {
     Member member = client().resource("/members/4").get(Member.class);
     assertThat(member).isEqualTo(newMember);
   }
+
+  @Test
+  public void deleteMemberById_deletesMember() throws Exception {
+    client().resource("/members/1").delete();
+    verify(memberDAO).delete(1L);
+  }
 }

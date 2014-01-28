@@ -22,4 +22,11 @@ public class MemberDAO extends AbstractDAO<Member> {
   public Member findById(Long id) {
     return get(id);
   }
+
+  public void delete(Long id) {
+    Member member = findById(id);
+    if (member != null) {
+      currentSession().delete(member);
+    }
+  }
 }
