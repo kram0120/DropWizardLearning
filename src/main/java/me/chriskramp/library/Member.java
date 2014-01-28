@@ -2,11 +2,17 @@ package me.chriskramp.library;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 @Entity
 public class Member {
   private String name;
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq-gen")
+  @SequenceGenerator(name = "seq-gen", sequenceName = "member_id_seq", initialValue = 25, allocationSize = 12)
   private Long id;
 
   public void setName(String name) {
@@ -17,8 +23,6 @@ public class Member {
     return name;
   }
 
-  @Id
-  @GeneratedValue
   public Long getId() {
     return id;
   }
