@@ -1,4 +1,4 @@
-DropWizardBootstrap
+DropWizardLearning
 ===================
 
-Resources for bootstrapping a project based on DropWizard
+Learning the DropWizard framework by modeling a Library (the kind with books).
