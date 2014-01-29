@@ -1,5 +1,8 @@
 package me.chriskramp.library;
 
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,6 +11,8 @@ import javax.persistence.SequenceGenerator;
 
 @Entity
 public class Member {
+
+  @NotEmpty
   private String name;
 
   @Id

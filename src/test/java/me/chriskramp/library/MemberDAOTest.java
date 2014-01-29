@@ -70,9 +70,17 @@ public class MemberDAOTest {
   @Test
   public void getAllMembers_returnsAllSavedMembers() throws Exception {
     final List<Member> members = new ArrayList<Member>();
-    members.add(new Member());
-    members.add(new Member());
-    members.add(new Member());
+    Member member1 = new Member();
+    member1.setName("Member 1");
+    members.add(member1);
+
+    Member member2 = new Member();
+    member2.setName("Member 2");
+    members.add(member2);
+
+    Member member3 = new Member();
+    member3.setName("Member 3");
+    members.add(member3);
 
     final List<Member> found = new ArrayList<Member>();
     new TestUnitOfWork(sessionFactory) {
@@ -102,7 +110,9 @@ public class MemberDAOTest {
       @Override
       protected void performTransaction(SessionFactory sessionFactory) {
         MemberDAO dao = new MemberDAO(sessionFactory);
-        dao.save(new Member());
+        Member member = new Member();
+        member.setName("Member");
+        dao.save(member);
       }
     }.execute();
 

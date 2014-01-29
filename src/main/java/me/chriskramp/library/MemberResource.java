@@ -2,10 +2,12 @@ package me.chriskramp.library;
 
 import com.yammer.dropwizard.hibernate.UnitOfWork;
 
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -39,7 +41,7 @@ public class MemberResource {
   @UnitOfWork
   @Path("/create")
   @Consumes(MediaType.APPLICATION_JSON)
-  public Member createMember(Member member) {
+  public Member createMember(@Valid Member member) {
     return memberDAO.save(member);
   }
 
@@ -48,5 +50,13 @@ public class MemberResource {
   @Path("{id}")
   public void destroy(@PathParam("id") Long id) {
     memberDAO.delete(id);
+  }
+
+  @PUT
+  @UnitOfWork
+  @Path("{id}")
+  @Consumes(MediaType.APPLICATION_JSON)
+  public Member update(@Valid Member updatedMember) {
+    return memberDAO.save(updatedMember);
   }
 }
