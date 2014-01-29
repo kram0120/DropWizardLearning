@@ -67,7 +67,7 @@ public class MemberResourceTest extends ResourceTest {
 
     ObjectMapper mapper = new ObjectMapper();
     String newMemberJson = mapper.writeValueAsString(newMember);
-    client().resource("/members/create").type(MediaType.APPLICATION_JSON_TYPE).post(Member.class, newMemberJson);
+    client().resource("/members").type(MediaType.APPLICATION_JSON_TYPE).post(Member.class, newMemberJson);
     verify(memberDAO).save(newMember);
 
     when(memberDAO.findById(4L)).thenReturn(newMember);
@@ -83,7 +83,7 @@ public class MemberResourceTest extends ResourceTest {
     String newMemberJson = mapper.writeValueAsString(invalidMember);
 
     try {
-      client().resource("/members/create").type(MediaType.APPLICATION_JSON_TYPE).post(Member.class, newMemberJson);
+      client().resource("/members").type(MediaType.APPLICATION_JSON_TYPE).post(Member.class, newMemberJson);
       fail("Exception expected");
     } catch (Throwable t) {
       assertThat(t).isInstanceOf(InvalidEntityException.class);

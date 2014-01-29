@@ -39,9 +39,8 @@ public class MemberResource {
 
   @POST
   @UnitOfWork
-  @Path("/create")
   @Consumes(MediaType.APPLICATION_JSON)
-  public Member createMember(@Valid Member member) {
+  public Member create(@Valid Member member) {
     return memberDAO.save(member);
   }
 
