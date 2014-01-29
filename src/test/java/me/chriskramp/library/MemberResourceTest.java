@@ -19,11 +19,9 @@ import static org.mockito.Mockito.when;
 
 public class MemberResourceTest extends ResourceTest {
 
-  private MemberResource memberResource;
   private MemberDAO memberDAO;
   private List<Member> memberList;
   private Member firstMember;
-  private Member secondMember;
 
   @Override
   protected void setUpResources() throws Exception {
@@ -34,7 +32,7 @@ public class MemberResourceTest extends ResourceTest {
     firstMember.setId(1L);
     memberList.add(firstMember);
 
-    secondMember = new Member();
+    Member secondMember = new Member();
     secondMember.setName("Member2");
     secondMember.setId(2L);
     memberList.add(secondMember);
@@ -42,7 +40,7 @@ public class MemberResourceTest extends ResourceTest {
     memberDAO = mock(MemberDAO.class);
     when(memberDAO.getAllMembers()).thenReturn(memberList);
 
-    memberResource = new MemberResource(memberDAO);
+    MemberResource memberResource = new MemberResource(memberDAO);
     addResource(memberResource);
   }
 

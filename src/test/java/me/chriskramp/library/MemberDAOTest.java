@@ -15,12 +15,11 @@ import static org.fest.assertions.api.Assertions.assertThat;
 
 public class MemberDAOTest {
 
-  private Configuration configuration;
   private SessionFactory sessionFactory;
 
   @Before
   public void setup() {
-    configuration = new Configuration();
+    Configuration configuration = new Configuration();
     configuration.addAnnotatedClass(Member.class);
     configuration.configure();
     ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
